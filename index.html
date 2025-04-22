@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Tweak Tools</title>
+<style>
+  :root {
+    --bg-dark: #121212;
+    --bg-gray: #1e1e1e;
+    --bg-light: #2d2d2d;
+    --text-white: #ffffff;
+    --text-gray: #b3b3b3;
+    --accent: #3a3a3a;
+    --highlight: #4a4a4a;
+    --copied-color: #4CAF50; /* Green color for copied state */
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  header {
+    background-color: var(--bg-gray);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    margin: 0;
+    color: var(--text-white);
+    font-size: 1.5rem;
+  }
+  .subtitle {
+    color: var(--text-gray);
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+  .section {
+    background-color: var(--bg-gray);
+    border-radius: 6px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  .section-header {
+    background-color: var(--bg-light);
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+  }
+  .section-header:hover {
+    background-color: var(--highlight);
+  }
+  .section-title {
+    margin: 0;
+    color: var(--text-white);
+    font-size: 1rem;
+  }
+  .section-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .section.active .section-content {
+    max-height: 2000px;
+    padding: 10px;
+  }
+  .tweak-item {
+    background-color: var(--bg-light);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .tweak-title {
+    margin: 0 0 5px;
+    font-size: 0.95rem;
+    color: var(--text-white);
+  }
+  .tweak-description {
+    margin: 0 0 10px;
+    color: var(--text-gray);
+    font-size: 0.8rem;
+  }
+  .code-block {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.8rem;
+    position: relative;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-color: var(--accent);
+    color: var(--text-white);
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+  }
+  .copy-btn:hover {
+    background-color: var(--highlight);
+  }
+  .copy-btn.copied {
+    background-color: var(--copied-color);
+  }
+  .arrow {
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+  }
+  .section.active .arrow {
+    transform: rotate(90deg);
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+    .section-header {
+      padding: 8px 12px;
+      font-size: 0.9rem;
+    }
+    .section.active .section-content {
+      padding: 10px;
+    }
+  }
+  /* Style for the image */
+  .chrome-image {
+    max-width: 100%; /* Make the image responsive */
+    height: auto;
+    margin-top: 10px; /* Add some space above the image */
+    border-radius: 4px; /* Optional: Add rounded corners */
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Tweak Tools</h1>
+    <p class="subtitle">One-click access to helpful system commands and settings</p>
+  </header>
+  <div class="section" id="run-commands-section">
+    <div class="section-header" onclick="toggleSection('run-commands-section')">
+      <h2 class="section-title">Run Commands</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">Windows Maintenance Shortcuts</h3>
+        <p class="tweak-description">Quick cleanup commands to remove temporary files and boost performance.</p>
+        <p class="tweak-description">Press <strong>Windows + R</strong> to open the Run dialog and enter the commands below:</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>%temp%</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>temp</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>prefetch</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>services.msc</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>netplwiz</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>mrt</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>C:\Windows\SoftwareDistribution\Download</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Appearance and performance</h3>
+        <p class="tweak-description">Search this in the Windows search bar:</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Adjust the Appearance and performance</code></div>
+        <img src="Adjust the Appearance and performance.png" alt="Adjust Appearance and Performance" class="chrome-image" width="400" height="auto" style="display:block; margin-left:auto; margin-right:auto;">
+      </div>
+    </div>
+</div>
+  <div class="section" id="cmd-section">
+    <div class="section-header" onclick="toggleSection('cmd-section')">
+      <h2 class="section-title">CMD Commands</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">Network and System Fix Commands</h3>
+        <p class="tweak-description">Open Command Prompt and run the commands below one by one:</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>ipconfig /release</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>ipconfig /renew</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>ipconfig /flushdns</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>sfc /scannow</code></div>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Adjust the Appearance and performance</code></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="powershell-section">
+    <div class="section-header" onclick="toggleSection('powershell-section')">
+      <h2 class="section-title">PowerShell Commands</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">System Tweaks by Chris Titus</h3>
+        <p class="tweak-description">Run this in PowerShell to apply performance tweaks and recommended settings from Chris Titus Tech:</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>iwr -useb https://christitus.com/win | iex</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Debloat Script</h3>
+        <p class="tweak-description">Run this to remove unnecessary apps and services from Windows</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/debloat'))</code></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="chocolatey-section">
+    <div class="section-header" onclick="toggleSection('chocolatey-section')">
+      <h2 class="section-title">Chocolatey Package Manager</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">Install Chocolatey</h3>
+        <p class="tweak-description">Installs the Chocolatey package manager for Windows</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">App Install</h3>
+        <p class="tweak-description">Installs common applications using Chocolatey</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>choco install 7zip chromium foobar2000 imageglass k-litecodecpack-standard revouninstaller visualstudio --yes</code></div>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="chrome-section">
+    <div class="section-header" onclick="toggleSection('chrome-section')">
+      <h2 class="section-title">Chrome</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">Chrome Flags</h3>
+        <p class="tweak-description">Access Chrome experimental features</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>chrome://flags/</code></div>
+        <img src="Flags.png" alt="Chrome Flags" class="chrome-image" width="700" height="auto" style="display:block; margin-left:auto; margin-right:auto;">
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Chrome Extensions</h3>
+        <p class="tweak-description">Manage and view installed Chrome extensions</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>chrome://extensions/</code></div>
+        <img src="Extensions.png" alt="Chrome Extensions" class="chrome-image" width="700" height="auto" style="display:block; margin-left:auto; margin-right:auto;">
+      </div>
+    </div>
+  </div>
+  <div class="section" id="misc-section">
+    <div class="section-header" onclick="toggleSection('misc-section')">
+      <h2 class="section-title">Miscellaneous</h2>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="section-content">
+      <div class="tweak-item">
+        <h3 class="tweak-title">Image Path</h3>
+        <p class="tweak-description">Default screenshot location</p>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>C:\Users\XxDARKDEVILxX\AppData\Local\Packages\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\TempState\ScreenClip</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Check PC Performance</h3>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Get-CimInstance Win32_WinSat</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Windows Home Bypass (Setup)</h3>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>Shift+F10<br>ms-cxh:localonly</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Trackpad Driver Name</h3>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>INT34C5</code></div>
+      </div>
+      <div class="tweak-item">
+        <h3 class="tweak-title">Laptop Driver</h3>
+        <div class="code-block"><code>Lenovo YOGA Slim 7 Pro 14IHU5</code></div>
+        <img src="Laptop_Driver_A.png" alt="Laptop Driver" class="chrome-image" width="600" height="auto" style="display:block; margin-left:auto; margin-right:auto;">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const sections = document.querySelectorAll('.section');
+
+  function toggleSection(id) {
+    const clickedSection = document.getElementById(id);
+
+    sections.forEach(section => {
+      if (section.id !== id && section.classList.contains('active')) {
+        section.classList.remove('active');
+      }
+    });
+
+    clickedSection.classList.toggle('active');
+  }
+
+  function copyCode(button) {
+    const code = button.nextElementSibling.innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      button.innerText = 'Copied';
+      button.classList.add('copied');
+      setTimeout(() => {
+        button.innerText = 'Copy';
+        button.classList.remove('copied');
+      }, 1500);
+    });
+  }
+</script>
+</body>
+</html>
